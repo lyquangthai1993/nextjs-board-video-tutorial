@@ -5,7 +5,7 @@ import {Plus} from "lucide-react";
 import {CreateOrganization} from "@clerk/nextjs";
 import Hint from "@/components/hint";
 
-const NewButton = (props) => {
+const NewButton = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>

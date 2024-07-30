@@ -21,7 +21,6 @@ export const ConvexClientProvider = ({
       <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
         <SignedIn>
           {children}
-          <SignOutButton />
         </SignedIn>
         <SignedOut>
           <SignInButton />

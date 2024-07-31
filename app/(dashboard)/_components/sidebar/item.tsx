@@ -25,7 +25,7 @@ const Item = ({
 
     const isActive = idActive === id;
     // console.log("id = ", id);
-    const onClick = (_id) => {
+    const onClick = (_id: string) => {
 
         if (isActive) return;
 

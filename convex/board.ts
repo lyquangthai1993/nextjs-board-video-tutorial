@@ -27,8 +27,10 @@ export const create = mutation({
         if (!identity) {
             throw new Error('Unauthenticated');
         }
+        //random from 1 to 300
+        const randomNum = Math.floor(Math.random() * 300) + 1;
 
-        const randomImage = images[Math.floor(Math.random() * images.length)];
+        const randomImage = `https://picsum.photos/id/${randomNum}/200/`;
         console.log("args = ", args);
         return await ctx.db.insert('boards', {
             orgId: args.orgId,

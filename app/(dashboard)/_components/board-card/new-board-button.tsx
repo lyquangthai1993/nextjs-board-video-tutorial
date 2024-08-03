@@ -27,7 +27,6 @@ const NewBoardButton = ({
             .then(id => {
                 console.log('board created', id);
                 toast.success('Board created');
-                //TODO: redirect to the board/{id}
             })
             .catch((error) => {
                 console.error(error);

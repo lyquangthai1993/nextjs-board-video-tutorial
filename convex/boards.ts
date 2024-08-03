@@ -1,5 +1,5 @@
 import {v} from 'convex/values';
-import {query} from './_generated/server';
+import {mutation, query} from './_generated/server';
 
 
 export const get = query({
@@ -13,12 +13,28 @@ export const get = query({
             throw new Error('Unauthenticated');
         }
 
-        const boards = await ctx.db
+        return await ctx.db
             .query("boards")
             .withIndex("by_orgId", q => q.eq('orgId', args.orgId))
             .order("desc")
             .collect();
-
-        return boards;
     }
 });
+
+export const remove = mutation({
+    args: {
+        id: v.string()
+    },
+    handler: async (ctx, {id}) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new Error('Unauthenticated');
+        }
+        if (id) {
+            // @ts-ignore
+            await ctx.db.delete(id);
+        }
+    }
+});
+

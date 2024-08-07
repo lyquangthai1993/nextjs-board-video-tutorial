@@ -3,10 +3,13 @@
 import {DropdownMenuContentProps} from "@radix-ui/react-dropdown-menu";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import React from "react";
-import {Link2, Trash2} from "lucide-react";
+import {Link2, Pencil, Trash2} from "lucide-react";
 import {toast} from "sonner";
 import {useApiMutation} from "@/hooks/use-api-mutation";
 import {api} from "@/convex/_generated/api";
+import ConfirmModal from "@/components/ui/confirm-modal";
+import {Button} from "@/components/ui/button";
+import {useRenameModal} from "@/store/use-rename-modal";
 
 interface ActionsProps {
     children?: React.ReactNode;
@@ -24,6 +27,7 @@ const Actions = ({
                      id,
                      title
                  }: ActionsProps) => {
+    const {onOpen} = useRenameModal();
     const {mutate} = useApiMutation(api.boards.remove);
 
     const handleCopyLink = () => {
@@ -64,11 +68,23 @@ const Actions = ({
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     className={'px-3 cursor-pointer'}
-                    onClick={() => handleDelete()}
+                    onClick={()=>onOpen(id, title)}
                 >
-                    <Trash2 className={'w-4 h-4 mr-2'}/>
-                    Delete
+                    <Pencil className={'w-4 h-4 mr-2'}/>
+                    Rename
                 </DropdownMenuItem>
+                <ConfirmModal
+                    header={'Delete Board?'}
+                    description={'This will delete the board and all its contents.'}
+                    onConfirm={handleDelete}>
+                    <Button
+                        variant={'ghost'}
+                        className={'px-3 cursor-pointer text-sm w-full justify-start font-normal'}
+                    >
+                        <Trash2 className={'w-4 h-4 mr-2'}/>
+                        Delete
+                    </Button>
+                </ConfirmModal>
             </DropdownMenuContent>
         </DropdownMenu>
     );

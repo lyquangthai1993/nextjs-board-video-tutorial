@@ -8,7 +8,7 @@ import {formatDistanceToNow} from "date-fns";
 import Footer from "@/app/(dashboard)/_components/board-card/footer";
 
 import {Skeleton} from "@/components/ui/skeleton";
-import Actions from "@/components/action";
+import Actions from "@/components/actions";
 import {MoreHorizontal} from "lucide-react";
 
 interface BoardCardProps {

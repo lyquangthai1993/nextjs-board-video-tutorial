@@ -2,6 +2,10 @@
 // https://liveblocks.io/docs/api-reference/liveblocks-react#Typing-your-data
 import {createClient} from "@liveblocks/client";
 
+const client = createClient({
+    authEndpoint: "/api/liveblocks-auth",
+});
+
 declare global {
     interface Liveblocks {
         // Each user's Presence, for useMyPresence, useOthers, etc.
@@ -18,10 +22,12 @@ declare global {
 
         // Custom user info set when authenticating with a secret key
         UserMeta: {
-            id: string;
-            info: {
+            id?: string;
+            name?: string;
+            info?: {
                 // Example properties, for useSelf, useUser, useOthers, etc.
-                // name: string;
+                name?: string;
+                picture?: string;
                 // avatar: string;
             };
         };
@@ -51,5 +57,6 @@ const LIVEBLOCKS_API_KEY = process.env.NEXT_PUBLIC_LIVEBLOCKS_API_KEY!;
 console.log("LIVEBLOCKS_API_KEY = ", LIVEBLOCKS_API_KEY);
 
 export {
+    client,
     LIVEBLOCKS_API_KEY
 };

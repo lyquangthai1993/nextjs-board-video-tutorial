@@ -2,7 +2,6 @@
 
 import {ReactNode} from "react";
 import {ClientSideSuspense, LiveblocksProvider, RoomProvider} from "@liveblocks/react/suspense";
-import {LIVEBLOCKS_API_KEY} from "@/liveblocks.config";
 
 
 interface RoomProps {
@@ -19,7 +18,8 @@ const Room = ({
               }: RoomProps) => {
 
     return (
-        <LiveblocksProvider publicApiKey={LIVEBLOCKS_API_KEY}>
+        // <LiveblocksProvider publicApiKey={LIVEBLOCKS_API_KEY}>
+        <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
             <RoomProvider id={roomId}>
                 <ClientSideSuspense fallback={fallback}>
                     {children}

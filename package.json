@@ -7,14 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "convex": "npx convex dev",
-    "start-local": "npm run dev && npm run convex"
+    "convex": "npx convex dev"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.2.8",
     "@liveblocks/client": "^2.4.0",
+    "@liveblocks/node": "^2.4.0",
     "@liveblocks/react": "^2.4.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",

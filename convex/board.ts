@@ -1,18 +1,18 @@
-import {mutation} from "./_generated/server";
+import {mutation, query} from "./_generated/server";
 import {v} from "convex/values";
 //random 10 link images
-const images = [
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
-    "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c"
-];
+// const images = [
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c",
+//     "https://images.unsplash.com/photo-1612835360191-2c7f3f2f0a6c"
+// ];
 
 export const create = mutation({
     args: {
@@ -64,11 +64,9 @@ export const update = mutation({
             throw new Error('Title is too long');
         }
 
-        const board = await ctx.db.patch(args.id, {
+        return await ctx.db.patch(args.id, {
             title
         });
-
-        return board;
     }
 });
 
@@ -149,5 +147,12 @@ export const unfavorite = mutation({
         await ctx.db.delete(existingFavorite._id);
 
         return board;
+    }
+});
+
+export const get = query({
+    args: {id: v.id('boards')},
+    handler: async (ctx, args) => {
+        return await ctx.db.get(args.id);
     }
 });

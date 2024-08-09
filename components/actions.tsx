@@ -40,11 +40,9 @@ const Actions = ({
             id
         })
             .then(_id => {
-
                 toast.success('Board deleted');
             })
             .catch((_error) => {
-
                 toast.error('Failed to delete board');
             });
     };

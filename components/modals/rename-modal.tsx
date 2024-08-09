@@ -37,7 +37,7 @@ const RenameModal = ({}: RenameModalProps) => {
 
     const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-console.log("initialValues = ", initialValues);
+        console.log("initialValues = ", initialValues);
         mutate({
             id: initialValues.id,
             title

@@ -20,21 +20,24 @@ const Cursor = ({
     const {x, y} = cursor;
     return (
         <foreignObject
-        style={{
-            transform: `translate(${x}px, ${y}px)`,
-        }}
-        height={50}
-        width={50}
-        className={'relative drop-shadow-md'}
+            style={{
+                transform: `translate(${x}px, ${y}px)`,
+            }}
+            height={50}
+            width={name.length * 10 + 24}
+            className={'relative drop-shadow-md'}
         >
             <MousePointer2 className="h-5 w-5" style={{
                 fill: connectionIdToColor(connectionId),
                 color: connectionIdToColor(connectionId),
             }}/>
-            <span className={'text-sm'}>
-
-            {name}
-            </span>
+            <div className={'absolute left-5 px-1.5 py-0.5 text-xs rounded-md text-white font-semibold'}
+            style={{
+                backgroundColor: connectionIdToColor(connectionId),
+            }}
+            >
+                {name}
+            </div>
         </foreignObject>
     );
 };

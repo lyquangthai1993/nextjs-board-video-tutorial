@@ -20,7 +20,11 @@ const Room = ({
     return (
         // <LiveblocksProvider publicApiKey={LIVEBLOCKS_API_KEY}>
         <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
-            <RoomProvider id={roomId}>
+            <RoomProvider id={roomId}
+            initialPresence={{
+                cursor: null
+            }}
+            >
                 <ClientSideSuspense fallback={fallback}>
                     {children}
                 </ClientSideSuspense>

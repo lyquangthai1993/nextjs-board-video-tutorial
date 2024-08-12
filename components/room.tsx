@@ -19,7 +19,7 @@ const Room = ({
 
     return (
         // <LiveblocksProvider publicApiKey={LIVEBLOCKS_API_KEY}>
-        <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
+        <LiveblocksProvider throttle={16} authEndpoint="/api/liveblocks-auth">
             <RoomProvider id={roomId}
             initialPresence={{
                 cursor: null

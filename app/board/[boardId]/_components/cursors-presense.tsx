@@ -7,7 +7,7 @@ import Cursor from "@/app/board/[boardId]/_components/cursor";
 interface CursorsPresenseProps {
 }
 
-const Cursors = () => {
+const Cursors = ({}:CursorsPresenseProps) => {
     const ids = useOthersConnectionIds();
 
     return (

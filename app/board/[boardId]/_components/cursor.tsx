@@ -31,6 +31,10 @@ const Cursor = ({
                 fill: connectionIdToColor(connectionId),
                 color: connectionIdToColor(connectionId),
             }}/>
+            <span className={'text-sm'}>
+
+            {name}
+            </span>
         </foreignObject>
     );
 };

@@ -58,7 +58,7 @@ const SelectionBox = ({
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Top + Side.Left, bounds);
                         }}
                     />
 
@@ -67,7 +67,7 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 'ns-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(
@@ -77,7 +77,7 @@ const SelectionBox = ({
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Top, bounds);
                         }}
                     />
 
@@ -86,14 +86,14 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 'sw-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(${bounds.x + bounds.width - HANDLE_WIDTH / 2}px, ${bounds.y - HANDLE_WIDTH / 2}px)`,
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Top + Side.Right, bounds);
                         }}
                     />
 
@@ -102,7 +102,7 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 'ew-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(
@@ -112,7 +112,7 @@ const SelectionBox = ({
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Right, bounds);
                         }}
                     />
 
@@ -121,7 +121,7 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 'se-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(
@@ -131,7 +131,7 @@ const SelectionBox = ({
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Right + Side.Bottom, bounds);
                         }}
                     />
 
@@ -140,7 +140,7 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 's-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(
@@ -150,7 +150,7 @@ const SelectionBox = ({
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Bottom, bounds);
                         }}
                     />
 
@@ -159,7 +159,7 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 'ne-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(
@@ -169,7 +169,7 @@ const SelectionBox = ({
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Bottom + Side.Left, bounds);
                         }}
                     />
 
@@ -178,17 +178,17 @@ const SelectionBox = ({
                         x={0}
                         y={0}
                         style={{
-                            cursor: 'nwse-resize',
+                            cursor: 'e-resize',
                             width: `${HANDLE_WIDTH}px`,
                             height: `${HANDLE_WIDTH}px`,
                             transform: `translate(
                             ${bounds.x - HANDLE_WIDTH / 2}px,
-                            ${bounds.y + bounds.height/2 - HANDLE_WIDTH / 2}px
+                            ${bounds.y + bounds.height / 2 - HANDLE_WIDTH / 2}px
                             )`,
                         }}
                         onPointerDown={(e) => {
                             e.stopPropagation();
-                            //TODO: add resize handler
+                            onResizeHandlePointerDown(Side.Left, bounds);
                         }}
                     />
                 </>

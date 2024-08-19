@@ -34,7 +34,7 @@ const Rectangle = ({
             y={0}
             width={width}
             height={height}
-            strokeWidth={3}
+            strokeWidth={'2px'}
             fill={fill ? rgbToHexColor(fill) : '#000'}
             stroke={selectionColor || 'transparent'}
         />

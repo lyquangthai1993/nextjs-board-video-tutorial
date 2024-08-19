@@ -10,6 +10,7 @@ import CursorsPresense from "@/app/board/[boardId]/_components/cursors-presense"
 import {connectionIdToColor, pointerEventToCanvasPoint} from "@/lib/utils";
 import {LiveObject, nanoid} from "@liveblocks/core";
 import LayerReview from "@/app/board/[boardId]/_components/layer-review";
+import SelectionBox from "@/app/board/[boardId]/_components/selection-box";
 
 const MAX_LAYERS = 1000;
 
@@ -125,7 +126,7 @@ const Canvas = ({boardId}: CanvasProps) => {
         setCanvasState({
             mode: CanvasMode.Translating,
             current: point,
-        })
+        });
     }, [
         camera,
         setCanvasState,
@@ -203,10 +204,12 @@ const Canvas = ({boardId}: CanvasProps) => {
                                 selectionColor={layerIdsToColorSelection[layerId]}
                                 onLayerPointerDown={onLayerPointerDown}
                             />);
-
-
                     })}
                     <CursorsPresense/>
+                    <SelectionBox
+                        onResizeHandlePointerDown={() => {
+                        }}
+                    />
                 </g>
             </svg>
         </main>);

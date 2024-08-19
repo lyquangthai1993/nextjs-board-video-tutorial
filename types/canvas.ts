@@ -31,8 +31,8 @@ export type EllipseLayer = {
     type: LayerType.Ellipse;
     x: number;
     y: number;
-    rx: number;
-    ry: number;
+    width: number;
+    height: number;
     fill: Color;
     value?: string;
 }

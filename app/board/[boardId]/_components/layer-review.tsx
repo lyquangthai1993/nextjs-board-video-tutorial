@@ -40,8 +40,6 @@ const LayerReview = ({
                 <ellipse
                     cx={layer.x}
                     cy={layer.y}
-                    rx={layer.rx}
-                    ry={layer.ry}
                     fill={selectionColor || `rgb(${layer.fill.r}, ${layer.fill.g}, ${layer.fill.b})`}
                     onPointerDown={(e) => onLayerPointerDown(e, id)}
                 />

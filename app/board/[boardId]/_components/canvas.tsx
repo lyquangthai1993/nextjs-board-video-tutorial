@@ -11,6 +11,7 @@ import {connectionIdToColor, pointerEventToCanvasPoint, resizeBounds} from "@/li
 import {LiveObject, nanoid} from "@liveblocks/core";
 import LayerReview from "@/app/board/[boardId]/_components/layer-review";
 import SelectionBox from "@/app/board/[boardId]/_components/selection-box";
+import SelectionTools from "@/app/board/[boardId]/_components/selection-tools";
 
 const MAX_LAYERS = 1000;
 
@@ -111,7 +112,6 @@ const Canvas = ({boardId}: CanvasProps) => {
             if (canvasState.mode !== CanvasMode.Resizing) {
                 return;
             }
-            console.log('resizeSelectedLayer', canvasState.corner);
 
             const bounds = resizeBounds(
                 canvasState.initialBounds,
@@ -202,11 +202,13 @@ const Canvas = ({boardId}: CanvasProps) => {
         e.stopPropagation();
 
         const point = pointerEventToCanvasPoint(e, camera);
-
+        // console.log("self.presence.selection.includes(layerId) = ", self.presence.selection.includes(layerId));
         if (!self.presence.selection.includes(layerId)) {
             setMyPresence({
                 selection: [layerId]
             }, {addToHistory: true});
+        } else {
+
         }
 
         setCanvasState({
@@ -221,12 +223,13 @@ const Canvas = ({boardId}: CanvasProps) => {
     ]);
 
     const onPointerDown = useCallback((e: React.PointerEvent) => {
+        console.log('onPointerDown');
         const point = pointerEventToCanvasPoint(e, camera);
         if (canvasState.mode === CanvasMode.Inserting) {
             return;
         }
 
-        // TODO: add casse drawing
+        // TODO: add case drawing
 
         setCanvasState({
             origin: point,
@@ -289,12 +292,17 @@ const Canvas = ({boardId}: CanvasProps) => {
                      undo={history.undo}
                      redo={history.redo}
             />
+            <SelectionTools
+                camera={camera}
+                setLastUsedColor={setLastUsedColor}
+            />
             <svg
                 className={'h-[100vh] w-[100vw]'}
                 onWheel={onWheel}
                 onPointerMove={onPointerMove}
                 onPointerLeave={onPointerLeave}
                 onPointerUp={onPointerUp}
+                onPointerDown={onPointerDown}
             >
                 <g
                     style={{

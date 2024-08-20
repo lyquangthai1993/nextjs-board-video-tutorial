@@ -27,7 +27,7 @@ const SelectionBox = ({
     if (!bounds) {
         return null;
     }
-    console.log("{bounds} = ", {bounds});
+
     return (
         <>
             <rect

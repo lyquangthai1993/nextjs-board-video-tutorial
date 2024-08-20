@@ -4,6 +4,8 @@ import {memo} from "react";
 import {useStorage} from "@liveblocks/react";
 import {LayerType} from "@/types/canvas";
 import Rectangle from "@/app/board/[boardId]/_components/layer/rectangle";
+import Ellipse from "@/app/board/[boardId]/_components/layer/ellipse";
+import Text from "@/app/board/[boardId]/_components/layer/text";
 
 interface LayerReviewProps {
     id: string;
@@ -37,11 +39,9 @@ const LayerReview = ({
 
         case LayerType.Ellipse:
             return (
-                <ellipse
-                    cx={layer.x}
-                    cy={layer.y}
-                    fill={selectionColor || `rgb(${layer.fill.r}, ${layer.fill.g}, ${layer.fill.b})`}
-                    onPointerDown={(e) => onLayerPointerDown(e, id)}
+                <Ellipse id={id} layer={layer}
+                            selectionColor={selectionColor}
+                            onPointerDown={(e) => onLayerPointerDown(e, id)}
                 />
             );
 
@@ -56,15 +56,15 @@ const LayerReview = ({
 
         case LayerType.Text:
             return (
-                <text
-                    x={layer.x}
-                    y={layer.y}
-                    fill={selectionColor || `rgb(${layer.fill.r}, ${layer.fill.g}, ${layer.fill.b})`}
-                    onPointerDown={(e) => onLayerPointerDown(e, id)}
-                >
-                    {layer.value}
-                </text>
+                <Text id={id} layer={layer}
+                selectionColor={selectionColor}
+                onPointerDown={(e) => onLayerPointerDown(e, id)}
+                />
             );
+
+        default:
+            console.log("Unknown layer type", layer);
+            return null;
     }
 };
 

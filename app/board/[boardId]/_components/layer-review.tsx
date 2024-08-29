@@ -6,6 +6,8 @@ import {LayerType} from "@/types/canvas";
 import Rectangle from "@/app/board/[boardId]/_components/layer/rectangle";
 import Ellipse from "@/app/board/[boardId]/_components/layer/ellipse";
 import Text from "@/app/board/[boardId]/_components/layer/text";
+import Path from "@/app/board/[boardId]/_components/layer/path";
+import {rgbToHexColor} from "@/lib/utils";
 
 interface LayerReviewProps {
     id: string;
@@ -40,16 +42,20 @@ const LayerReview = ({
         case LayerType.Ellipse:
             return (
                 <Ellipse id={id} layer={layer}
-                            selectionColor={selectionColor}
-                            onPointerDown={(e) => onLayerPointerDown(e, id)}
+                         selectionColor={selectionColor}
+                         onPointerDown={(e) => onLayerPointerDown(e, id)}
                 />
             );
 
         case LayerType.Path:
             return (
-                <path
-                    d={`M ${layer.points.map(([x, y]) => `${x} ${y}`).join(" L ")}`}
-                    fill={selectionColor || `rgb(${layer.fill.r}, ${layer.fill.g}, ${layer.fill.b})`}
+                <Path
+                    key={id}
+                    points={layer.points}
+                    x={layer.x}
+                    y={layer.y}
+                    fill={layer.fill ? rgbToHexColor(layer.fill) : 'transparent'}
+                    stroke={selectionColor}
                     onPointerDown={(e) => onLayerPointerDown(e, id)}
                 />
             );
@@ -57,8 +63,8 @@ const LayerReview = ({
         case LayerType.Text:
             return (
                 <Text id={id} layer={layer}
-                selectionColor={selectionColor}
-                onPointerDown={(e) => onLayerPointerDown(e, id)}
+                      selectionColor={selectionColor}
+                      onPointerDown={(e) => onLayerPointerDown(e, id)}
                 />
             );
 
